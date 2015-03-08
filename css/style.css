@@ -512,6 +512,7 @@ a {
 }
 #header .header-menu li {
   cursor: default;
+  text-align: left;
 }
 #header .header-menu li a {
   min-width: 300px;
