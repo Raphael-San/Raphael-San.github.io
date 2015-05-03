@@ -250,12 +250,7 @@ ubuntu 14.04 64bit
 <hr>
 <h1 id="添加用户组">添加用户组</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo addgroup hadoop</span><br><span class="line">$ sudo adduser --ingroup hadoop hduser</span><br></pre></td></tr></table></figure>
 <hr>
-<h1 id="安装与配置SSH">安装与配置SSH</h1><h2 id="安装SSH">安装SSH</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ssh</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>安装好后，可以通过这样的命令查看<br>$ which ssh</p>
-<p>Or</p>
-<p>$ which sshd</p>
-</blockquote>
+<h1 id="安装与配置SSH">安装与配置SSH</h1><h2 id="安装SSH">安装SSH</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ssh</span><br><span class="line">&gt; 安装好后，可以通过这样的命令查看</span><br><span class="line">&gt; $ <span class="built_in">which</span> ssh</span><br><span class="line"></span><br><span class="line">&gt; Or</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">which</span> sshd</span><br></pre></td></tr></table></figure>
 <h2 id="配置SSH无密码登陆">配置SSH无密码登陆</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ su hduser</span><br><span class="line">$ ssh-keygen -t rsa -P <span class="string">""</span></span><br><span class="line">$ cat <span class="variable">$HOME</span>/.ssh/id_rsa.pub &gt;&gt; <span class="variable">$HOME</span>/.ssh/authorized_keys   <span class="comment"># 添加授权</span></span><br><span class="line">$ ssh localhost   <span class="comment">#最后检查是否配置成功</span></span><br></pre></td></tr></table></figure>
 <h1 id="安装Hadoop">安装Hadoop</h1><h2 id="下载tar包">下载tar包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirrors.sonic.net/apache/hadoop/common/hadoop-<span class="number">2.6</span>.<span class="number">0</span>/hadoop-<span class="number">2.6</span>.<span class="number">0</span>.tar.gz</span><br><span class="line">$ tar xvzf hadoop-<span class="number">2.6</span>.<span class="number">0</span>.tar.gz</span><br></pre></td></tr></table></figure>
 <h2 id="赋予hduser的sudo权限">赋予hduser的sudo权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ su </span><br><span class="line">$ adduser hduser sudo</span><br></pre></td></tr></table></figure>
@@ -263,27 +258,33 @@ ubuntu 14.04 64bit
 <h1 id="Hadoop伪分布配置及简单使用">Hadoop伪分布配置及简单使用</h1><h2 id="配置环境变量">配置环境变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ update-alternatives --config java   <span class="comment">#找到java的安装路径</span></span><br><span class="line">$ sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在bashrc文件的末尾加入以下内容</p>
-</blockquote>
 <h1 id="HADOOP_VARIABLES_START">HADOOP VARIABLES START</h1><p>export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64  #路径都是根据个人实际情况填写<br>export HADOOP_INSTALL=/usr/local/hadoop<br>export PATH=$PATH:$HADOOP_INSTALL/bin<br>export PATH=$PATH:$HADOOP_INSTALL/sbin<br>export HADOOP_MAPRED_HOME=$HADOOP_INSTALL<br>export HADOOP_COMMON_HOME=$HADOOP_INSTALL<br>export HADOOP_HDFS_HOME=$HADOOP_INSTALL<br>export YARN_HOME=$HADOOP_INSTALL<br>export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native<br>export HADOOP_OPTS=”-Djava.library.path=$HADOOP_INSTALL/lib”</p>
-<h1 id="HADOOP_VARIABLES_END">HADOOP VARIABLES END</h1><p>最后不要忘记了执行：<br>$ source ~/.bashrc    # 使变量设置生效</p>
+<h1 id="HADOOP_VARIABLES_END">HADOOP VARIABLES END</h1></blockquote>
+<p>最后不要忘记了执行：<br>$ source ~/.bashrc    # 使变量设置生效</p>
 <blockquote>
 <p>可以通过查看java情况了解是否添加环境变量成功</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span>     <span class="comment"># 检验是否设置正确</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置/usr/local/hadoop/etc/hadoop/hadoop-env-sh">配置/usr/local/hadoop/etc/hadoop/hadoop-env.sh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/hadoop-env.sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-<span class="number">7</span>-openjdk-amd64  <span class="comment">#加入java环境变量</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置_/usr/local/hadoop/etc/hadoop/core-site-xml**">配置 /usr/local/hadoop/etc/hadoop/core-site.xml**</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir -p /app/hadoop/tmp</span><br><span class="line">$ sudo chown hduser:hadoop /app/hadoop/tmp</span><br><span class="line">$ sudo gedit /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>添加：</p>
-<configuration><br> <property><br>  <name>hadoop.tmp.dir</name><br>  <value>/app/hadoop/tmp</value><br>  <description>A base for other temporary directories.</description><br> </property><br><br> <property><br>  <name>fs.default.name</name><br>  <value>hdfs://localhost:54310</value><br>  <description>The name of the default file system.  A URI whose<br>  scheme and authority determine the FileSystem implementation.  The<br>  uri’s scheme determines the config property (fs.SCHEME.impl) naming<br>  the FileSystem implementation class.  The uri’s authority is used to<br>  determine the host, port, etc. for a filesystem.</description><br> </property><br></configuration>
-
-
+<p><configuration><br> <property><br>  <name>hadoop.tmp.dir</name><br>  <value>/app/hadoop/tmp</value><br>  <description>A base for other temporary directories.</description><br> </property></configuration></p>
+</blockquote>
+<p> <property><br>  <name>fs.default.name</name><br>  <value>hdfs://localhost:54310</value><br>  <description>The name of the default file system.  A URI whose<br>  scheme and authority determine the FileSystem implementation.  The<br>  uri’s scheme determines the config property (fs.SCHEME.impl) naming<br>  the FileSystem implementation class.  The uri’s authority is used to<br>  determine the host, port, etc. for a filesystem.</description><br> </property></p>
+<blockquote>
+<p></p>
+</blockquote>
 <h2 id="配置_/usr/local/hadoop/etc/hadoop/mapred-site-xml**">配置 /usr/local/hadoop/etc/hadoop/mapred-site.xml**</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/mapred-site.xml.template /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
-<p>然后再往该文件追加：</p>
-<configuration><br> <property><br>  <name>mapred.job.tracker</name><br>  <value>localhost:54311</value><br>  <description>The host and port that the MapReduce job tracker runs<br>  at.  If “local”, then jobs are run in-process as a single map<br>  and reduce task.<br>  </description><br> </property><br></configuration>
-
-
+<blockquote>
+<p>然后再往该文件追加：<br> <configuration><br> <property><br>  <name>mapred.job.tracker</name><br>  <value>localhost:54311</value><br>  <description>The host and port that the MapReduce job tracker runs<br>  at.  If “local”, then jobs are run in-process as a single map<br>  and reduce task.<br>  </description><br> </property><br></configuration></p>
+</blockquote>
 <h2 id="配置_/usr/local/hadoop/etc/hadoop/hdfs-site-xml**">配置 /usr/local/hadoop/etc/hadoop/hdfs-site.xml**</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir -p /usr/<span class="built_in">local</span>/hadoop_store/hdfs/namenode</span><br><span class="line">$ sudo mkdir -p /usr/<span class="built_in">local</span>/hadoop_store/hdfs/datanode</span><br><span class="line">$ sudo chown -R hduser:hadoop /usr/<span class="built_in">local</span>/hadoop_store</span><br><span class="line"></span><br><span class="line">$ sudo gedit /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure>
+<p>&gt;</p>
+<blockquote>
 <configuration><br> <property><br>  <name>dfs.replication</name><br>  <value>1</value><br>  <description>Default block replication.<br>  The actual number of replications can be specified when the file is created.<br>  The default is used if replication is not specified in create time.<br>  </description><br> </property><br> <property><br>   <name>dfs.namenode.name.dir</name><br>   <value>file:/usr/local/hadoop_store/hdfs/namenode</value><br> </property><br> <property><br>   <name>dfs.datanode.data.dir</name><br>   <value>file:/usr/local/hadoop_store/hdfs/datanode</value><br> </property><br></configuration>
 
+</blockquote>
 <h2 id="namenode_格式化">namenode 格式化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop namenode -format</span><br></pre></td></tr></table></figure>
 <h2 id="Hadoop启动与关闭">Hadoop启动与关闭</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/hadoop/sbin</span><br><span class="line"></span><br><span class="line">$ start-all.sh</span><br><span class="line"></span><br><span class="line">$ stop-all.sh</span><br></pre></td></tr></table></figure>
 <h2 id="Hadoop网页接口">Hadoop网页接口</h2><blockquote>
