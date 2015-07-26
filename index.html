@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hadoop/" style="font-size: NaNpx;">hadoop</a>
+						<a href="/tags/C-C/" style="font-size: NaNpx;">C/C++</a><a href="/tags/hadoop/" style="font-size: NaNpx;">hadoop</a>
 					</div>
 				</section>
 				
@@ -196,39 +196,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-
-      <!-- Table of Contents -->
-        
-
-
-        
         <h1 id="指针的相关概念">指针的相关概念</h1><p>  其实我个人觉得指针就三件事情，一是要明白指针是一个地址，指向一块内存空间；二是理解指针移动的时候，移动步调的大小；三是要注意一下指针相关的两个运算符&amp;和*。但是个人水平有限，不能完全表达自己的想法，所以只能抛概念了！</p>
 <p>  指针是一个特殊的变量，它里面存储的数值被解释成为内存里的一个地址。而要搞清楚一个指针，就需要搞清楚指针的四个方面的内容：指针的类型，指针所指向的类型，指针所指向的内存空间，指针本身所占据的内存空间。</p>
-<h2 id="指针的类型">指针的类型</h2><p>   字面上去区别的话，只要把指针声明语句里的指针名字去掉，剩下的部分就是这个指针的类型。这个总结的很实在，最起码我最初学指针的时候就没有注意过这个事情。</p>
-   <figure class="highlight delphi"><figcaption><span>c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int *ptr；      <span class="comment">//指针的类型为int*</span></span><br><span class="line">char *ptr；     <span class="comment">//指针的类型为char *</span></span><br><span class="line">int **ptr；     <span class="comment">//指针的类型为int **</span></span><br><span class="line">int <span class="comment">(*ptr)[3];  //指针的类型为int (*)</span>[<span class="number">3</span>]</span><br><span class="line">int *<span class="comment">(*ptr)[4]; //指针的类型为int *(*)</span>[<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="指针所指向的类型">指针所指向的类型</h2><p>   字面上去区别，把指针声明语句中的指针名字和名字左边的运算符*去掉，剩下就是指针所指向的类型。</p>
-   <figure class="highlight nimrod"><figcaption><span>c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *<span class="keyword">ptr</span>；      //去掉 *<span class="keyword">ptr</span>，剩下<span class="type">int</span>，指向的数据类型是<span class="type">int</span></span><br><span class="line"><span class="type">char</span> *<span class="keyword">ptr</span>；     //去掉 *<span class="keyword">ptr</span>，剩下<span class="type">char</span>，指向的数据类型是<span class="type">char</span></span><br><span class="line"><span class="type">int</span> **<span class="keyword">ptr</span>；     //去掉 *<span class="keyword">ptr</span>，剩下<span class="type">int</span>*，指向的数据类型是<span class="type">int</span>*，指向一个指针</span><br><span class="line"><span class="type">int</span> (*<span class="keyword">ptr</span>)[<span class="number">3</span>];  //去掉 *<span class="keyword">ptr</span>，剩下<span class="type">int</span>()[<span class="number">3</span>]，指向的数据类型是<span class="type">int</span>()[<span class="number">3</span>]</span><br><span class="line"><span class="type">int</span> *(*<span class="keyword">ptr</span>)[<span class="number">4</span>]; //去掉 *<span class="keyword">ptr</span>，剩下<span class="type">int</span>*()[<span class="number">4</span>]，指向的数据类型是<span class="type">int</span>*()[<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-<p>   虽然说，很多书都会强调指针的类型和指针所指向的类型是两个概念（它们也确实是两个概念），但是我个人觉得这两个概念在强调的是同样一件事情。因为32位程序里，所有类型的指针都只是32位的二进制数，所以讨论其类型是没有意义，最终我们需要利用的也只是它所指向的那块内存空间的数据的类型。指针所指向的类型在指针的使用中很重要，因为其指向的类型决定着指针每一次移动的步调的大小。这件事情很重要，个人觉得指针的运算中最容易出错的也就是这个地方。</p>
-<h2 id="指针所指向的内存区或地址">指针所指向的内存区或地址</h2><p>   在32位程序里，内存地址是32位，指针里面存储的值就是一个内存空间的地址，所以说所有类型的指针的值都是一个32位的整数，指向一块内存空间的开始。</p>
-<h2 id="指针本身所占据的内存空间">指针本身所占据的内存空间</h2><p>   前面也说了，指针里面存储着的就是一个32位的内存地址。一个字节8位，所以指针本身会占据4个字节的内存空间。在程序里面可以使用运算符sizeof(指针的类型)测试一下。sizeof不是一个函数，有些书把它认为是关键字，有些书把它叫做运算符，个人更喜欢叫运算符！</p>
-<p>   对于上面两个概念，其实上图会更直接，会更容易明白。<br>   <img src="http://7x002i.com1.z0.glb.clouddn.com/pointer1.jpg"></p>
-<h1 id="相关说明">相关说明</h1><p>  文章基于网上一些博客以及几本C语言的经典书籍。</p>
-<p>  博客：<a href="http://blog.csdn.net/sunchaoenter/article/details/6641544" target="_blank" rel="external">火山哥的专栏</a><br>  博客相关内容最先出于girlrong之手，特意去查了一下，没有找到更多与其相关的内容。<br>  不过有人把该博主的相关内容做成的PDF，该兴趣可以下载看一下。<br>  <a href="http://download.csdn.net/download/u014251825/8934583" target="_blank" rel="external">不再害怕指针</a></p>
-<p>  相关书籍：<br>  <a href="http://download.csdn.net/download/u014251825/8934597" target="_blank" rel="external">C语言深度解剖</a><br>  <a>C专家编程</a></p>
-
-
-        
-          <!-- show an end symbol if the article is fully displayed -->
-          <hr/>
-          <p class="article-more-link">
-            <a>end</a>
-          </p>
-        
+        <hr/>
+        <p class="article-more-link">
+          <a  href="/2015/07/26/ConceptOfPointer/#more">more >></a>
+        </p>
       
     </div>
     
     <div class="article-info">
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/C-C/">C/C++</a>
