@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Using-Pointer | Yu4rmyfs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="指针的操作  个人认为，操作指针需要清楚两件事情。一、明白在操作的内存地址；二、清楚当前指针移动的步调会有多大，在这一点上就需要与前面的知识结合起来，需要非常清楚指针所指向的数据类型在内存中的大小。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using-Pointer">
+<meta property="og:url" content="http://yoursite.com/2015/07/26/Using-Pointer/index.html">
+<meta property="og:site_name" content="Yu4rmyfs">
+<meta property="og:description" content="指针的操作  个人认为，操作指针需要清楚两件事情。一、明白在操作的内存地址；二、清楚当前指针移动的步调会有多大，在这一点上就需要与前面的知识结合起来，需要非常清楚指针所指向的数据类型在内存中的大小。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Using-Pointer">
+<meta name="twitter:description" content="指针的操作  个人认为，操作指针需要清楚两件事情。一、明白在操作的内存地址；二、清楚当前指针移动的步调会有多大，在这一点上就需要与前面的知识结合起来，需要非常清楚指针所指向的数据类型在内存中的大小。">
+  
+    <link rel="alternative" href="/atom.xml" title="Yu4rmyfs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://7x002i.com1.z0.glb.clouddn.com/ban4.jpg">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yu4rmyfs</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/essays">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yu4rmyfs" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/5164167811/home" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/Yu4rmyfs" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/hadoop/" style="font-size: NaNpx;">hadoop</a><a href="/tags/指针/" style="font-size: NaNpx;">指针</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.github.io/">Litten&#39;s Blog</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten">Litten&#39;s Git</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yu4rmyfs</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7x002i.com1.z0.glb.clouddn.com/ban4.jpg">
+				<hgroup>
+				  <h1 class="header-author">Yu4rmyfs</h1>
+				</hgroup>
+			</div>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/essays">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yu4rmyfs" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5164167811/home" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/Yu4rmyfs" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Using-Pointer" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/26/Using-Pointer/" class="article-date">
+  	<time datetime="2015-07-26T14:40:18.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Using-Pointer
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/C-C/">C/C++</a><a class="article-category-link" href="/categories/C-C/数组与指针/">数组与指针</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+            <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#指针的操作"><span class="toc-number">1.</span> <span class="toc-text">指针的操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#指针运算符&和*"><span class="toc-number">2.</span> <span class="toc-text">指针运算符&和*</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运算符*的使用举例"><span class="toc-number">3.</span> <span class="toc-text">运算符*的使用举例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#例一：读取与修改"><span class="toc-number">3.1.</span> <span class="toc-text">例一：读取与修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例二：注意指针移动的步调"><span class="toc-number">3.2.</span> <span class="toc-text">例二：注意指针移动的步调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例三：二级指针的误区"><span class="toc-number">3.3.</span> <span class="toc-text">例三：二级指针的误区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运算符&的使用举例"><span class="toc-number">4.</span> <span class="toc-text">运算符&的使用举例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#例一：取地址加运算的陷阱"><span class="toc-number">4.1.</span> <span class="toc-text">例一：取地址加运算的陷阱</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+          </div>
+        
+
+
+        
+        <h1 id="指针的操作">指针的操作</h1><p>  个人认为，操作指针需要清楚两件事情。一、明白在操作的内存地址；二、清楚当前指针移动的步调会有多大，在这一点上就需要与前面的知识结合起来，需要非常清楚指针所指向的数据类型在内存中的大小。</p>
+<a id="more"></a>
+<h1 id="指针运算符&amp;和*">指针运算符&amp;和*</h1><p>  &amp;是取地址运算符，会返回变量所匹配的内存空间的地址。比如说a是一个变量，绑定着一块存储着数据的内存空间。而&amp;a就会把a所绑定的那块数据内存空间的首地址返回来。要是不理会内存管理的知识的话，可以简单的说就是返回a的地址。</p>
+<p>  *是间接运算符，它的作用就是拿到指针所指向的那块内存空间里面的东西。</p>
+<p>  个人认为，可以把&amp;和<em>两个运算符认为是一组运算符，说白了就是&amp;负责取地址，而</em>负责拿到地址里面的东西。</p>
+<h1 id="运算符*的使用举例">运算符*的使用举例</h1><h2 id="例一：读取与修改">例一：读取与修改</h2>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *p = &amp;a;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line">*p = <span class="number">500</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>  p拿到a的地址后，通过*p拿到a所绑定的内存空间里面的数值10，然后还可以直接对该内存空间进行修改，将数值改为500.</p>
+<h2 id="例二：注意指针移动的步调">例二：注意指针移动的步调</h2>  <figure class="highlight cpp"><figcaption><span>land:c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">20</span>] = <span class="string">"You are a student"</span>;</span><br><span class="line"><span class="keyword">char</span> *ptr1 = a;</span><br><span class="line"><span class="keyword">int</span> *ptr2 = (<span class="keyword">int</span> *)a;</span><br><span class="line">ptr1++;</span><br><span class="line">ptr2++;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *ptr1 &lt;&lt; endl;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *ptr2 &lt;&lt; endl;</span><br><span class="line">ptr2 += <span class="number">5</span>;</span><br><span class="line"><span class="comment">//cout &lt;&lt; *ptr2 &lt;&lt; endl;</span></span><br></pre></td></tr></table></figure>
+<p>  指针ptr1的类型是char<em>，指针ptr2的类型是int</em>，ptr1指向的是char型数据，ptr2指向的是int型数据。一个char在内存中占一个byte，一个int在内存中占4个byte，所以ptr1移动的步调是一个byte一个byte的移动，ptr2移动的步调是4个byte4个byte的移动。当然，前辈早已经为我们总结了公式——指针移动的内存单元=指针移动的数值*sizeof(指针所指向的数据类型)。<br>  其实最重要还是要理解背后一些实质性的东西。那么指令ptr2 += 5;执行后会有怎么样结果呢？</p>
+<h2 id="例三：二级指针的误区">例三：二级指针的误区</h2>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">20</span>] = <span class="string">"You are a student"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = a;</span><br><span class="line"><span class="keyword">char</span> **ptr = &amp;p;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; **ptr &lt;&lt; endl;</span><br><span class="line">ptr++;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; **ptr &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>  程序输出的结果会是什么？Y和o，还是Y和a？<br>  指针p指向字符串的内存空间，类型为char，移动步调为一个byte。而指针ptr指向指针p所在的内存空间，类型为char*，其移动步调应该为4个byte。所以当执行ptr++的时候，的确是移动了4个byte，但是移动的内存空间是存储着指针p的内存空间，而不是存储着字符串的内存空间，这是两块不同的内存空间哟！要是无法抽象理解的话，可以看看前面指针的内存布局。在VS2013中，这会被提示是一个非法操作，因为你不知道存储着p的那块内存空间是什么东西，或者什么东西也不是！</p>
+<h1 id="运算符&amp;的使用举例">运算符&amp;的使用举例</h1><h2 id="例一：取地址加运算的陷阱">例一：取地址加运算的陷阱</h2>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *ptr = (<span class="keyword">int</span>*)(&amp;a + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *(a+<span class="number">1</span>) &lt;&lt; *(ptr-<span class="number">1</span>) &lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<p>  对于这种陷阱，个人觉得，要是我们对程序稍微修改一下，是不是会更清楚呢？</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">//做如下修改的话</span></span><br><span class="line"><span class="comment">//int *ptr = (int *)(&amp;a + 1);</span></span><br><span class="line"><span class="keyword">int</span> (*ptrTemp)[<span class="number">5</span>] = &amp;a;    <span class="comment">//定义了一个指向数组长度为5的指针。</span></span><br><span class="line">ptrTemp++;</span><br><span class="line"><span class="keyword">int</span> *ptr = (<span class="keyword">int</span> *) ptrTemp;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *(a+<span class="number">1</span>) &lt;&lt; <span class="string">" "</span> &lt;&lt; *(ptr-<span class="number">1</span>) &lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<p>  这样是不是会更加清晰一点？指针ptrTemp指向的数据类型为int()[5]，移动的步调为sizeof(int()[5]) = 5*4 = 20个byte。也就是说，每次会移动一个长度为5的整型数组的大小。而ptr指向的数据类型为int，移动的单位为sizeof(int)=4个byte。所以当赋值之后，ptr实际上指向的是a[5]后面的一个内存单元，所以当ptr-1的时候，退后4个byte的长度，正好指着a[5]。</p>
+<p>  可能要有人觉得，指针不就是数组吗？至少我本人就犯了这个错误犯了很长时间。数组与指针，相似而不相同，往后再慢慢介绍！</p>
+<h1 id="小结">小结</h1><p>  正如前面所说，对指针的操作，其实就三件事情。忽略运算符的话，就是两件事情。一、明白指针操作的是内存地址，清楚当前操作的内存空间。二、清楚当前指针所指向的数据类型，理解指针移动的单位，一个类型为T的指针的移动，以sizeof(T)为移动单位。理解好这两点就可以了，我个人觉得。</p>
+
+
+        
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/26/ConceptOfPointer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ConceptOfPointer</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Using-Pointer" data-title="Using-Pointer" data-url="http://yoursite.com/2015/07/26/Using-Pointer/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Yu4rmyfs
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
