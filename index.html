@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a><a href="/tags/指针/" style="font-size: 20px;">指针</a>
+						<a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a><a href="/tags/指针/" style="font-size: 20px;">指针</a><a href="/tags/数组/" style="font-size: 10px;">数组</a>
 					</div>
 				</section>
 				
@@ -170,10 +170,70 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Using-Pointer" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-指针与数组的异同" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/26/Using-Pointer/" class="article-date">
+      <a href="/2015/07/27/指针与数组的异同/" class="article-date">
+  	<time datetime="2015-07-27T08:13:34.000Z" itemprop="datePublished">2015-07-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/27/指针与数组的异同/">指针与数组的异同</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="指针与数组的内存布局">指针与数组的内存布局</h1><h2 id="指针的内存布局">指针的内存布局</h2>  <img src="http://7x002i.com1.z0.glb.clouddn.com/pointer1.jpg">
+<p>  当我们定义一个指针p时，编译器会在一块内存空间中，分配4个byte存储指针p的内容，并把变量名p和这块内存进行绑定，一旦绑定就不能进行更改。而指针p里面的内容又是一个32位的内存地址，指向着内存空间中某一个地方。</p>
+        <hr/>
+        <p class="article-more-link">
+          <a  href="/2015/07/27/指针与数组的异同/#more">more >></a>
+        </p>
+      
+    </div>
+    
+    <div class="article-info">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/指针/">指针</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/C-C/">C/C++</a><a class="article-category-link" href="/categories/C-C/指针与数组/">指针与数组</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-指针的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/26/指针的使用/" class="article-date">
   	<time datetime="2015-07-26T14:40:18.000Z" itemprop="datePublished">2015-07-26</time>
 </a>
     </div>
@@ -187,7 +247,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/26/Using-Pointer/">Using-Pointer</a>
+      <a class="article-title" href="/2015/07/26/指针的使用/">指针的使用</a>
     </h1>
   
 
@@ -199,7 +259,7 @@
         <h1 id="指针的操作">指针的操作</h1><p>  个人认为，操作指针需要清楚两件事情。一、明白在操作的内存地址；二、清楚当前指针移动的步调会有多大，在这一点上就需要与前面的知识结合起来，需要非常清楚指针所指向的数据类型在内存中的大小。</p>
         <hr/>
         <p class="article-more-link">
-          <a  href="/2015/07/26/Using-Pointer/#more">more >></a>
+          <a  href="/2015/07/26/指针的使用/#more">more >></a>
         </p>
       
     </div>
@@ -229,10 +289,10 @@
 
 
   
-    <article id="post-ConceptOfPointer" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-指针的概念" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/26/ConceptOfPointer/" class="article-date">
+      <a href="/2015/07/26/指针的概念/" class="article-date">
   	<time datetime="2015-07-26T06:34:41.000Z" itemprop="datePublished">2015-07-26</time>
 </a>
     </div>
@@ -246,7 +306,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/26/ConceptOfPointer/">ConceptOfPointer</a>
+      <a class="article-title" href="/2015/07/26/指针的概念/">指针的概念</a>
     </h1>
   
 
@@ -259,7 +319,7 @@
 <p>  指针是一个特殊的变量，它里面存储的数值被解释成为内存里的一个地址。而要搞清楚一个指针，就需要搞清楚指针的四个方面的内容：指针的类型，指针所指向的类型，指针所指向的内存空间，指针本身所占据的内存空间。</p>
         <hr/>
         <p class="article-more-link">
-          <a  href="/2015/07/26/ConceptOfPointer/#more">more >></a>
+          <a  href="/2015/07/26/指针的概念/#more">more >></a>
         </p>
       
     </div>
