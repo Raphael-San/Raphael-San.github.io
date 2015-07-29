@@ -240,7 +240,7 @@
 <h2 id="添加组件">添加组件</h2></li>
 </ul>
 <pre><code>1、右击工程名 -&gt; 添加 -&gt; 类
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg" width="450" height="300"></span>
+<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg"></span>
 
 
 2、在这里我们选择一个简单对象来进行尝试
@@ -262,18 +262,18 @@
 
 3、打开你定义的对象的.cpp文件，填写方法内容
 
-<span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STDMETHODIMP CAlert::GetString(BSTR* pVal)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// TODO:  在此添加实现代码</span></span><br><span class="line">USES_CONVERSION;</span><br><span class="line"><span class="keyword">char</span> szStr[<span class="number">20</span>] = <span class="string">"Hello World!"</span>;</span><br><span class="line">*pVal = ::SysAllocString(A2W(szStr));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> S_OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+<span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STDMETHODIMP CAlert::GetString(BSTR* pVal)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// TODO:  在此添加实现代码</span></span><br><span class="line">USES_CONVERSION;</span><br><span class="line"><span class="keyword">char</span> szStr[<span class="number">20</span>] = <span class="string">"Hello World!"</span>;</span><br><span class="line">*pVal = ::SysAllocString(A2W(szStr));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> S_OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
 
 
 4、打开相应的.h文件，标记控件为安全控件
    为主类添加一个有关安全的继承类
 
-   <span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IObjectSafetyImpl&lt;CAlert,INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA&gt;</span><br></pre></td></tr></table></figure></span>
+   <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IObjectSafetyImpl&lt;CAlert,INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA&gt;</span><br></pre></td></tr></table></figure></span>
 
 
    然后还需要在BEGINCOMMAP和ENDCOMMAP的代码段之间加入其对象映射
 
-   <span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COM_INTERFACE_ENTRY(IObjectSafety)</span><br></pre></td></tr></table></figure></span>
+   <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COM_INTERFACE_ENTRY(IObjectSafety)</span><br></pre></td></tr></table></figure></span>
 </code></pre><h2 id="编译生成-dll文件">编译生成.dll文件</h2><pre><code>上述工作完成后，就可以生成相应的链接文件。
 
 右击工程名 -&gt; 生成
