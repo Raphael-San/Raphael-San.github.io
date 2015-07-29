@@ -237,21 +237,28 @@
 <li><p>Visual studio 2013</p>
 <h2 id="新建工程">新建工程</h2><p>这个步骤是用来保持完整性的，请原谅强迫症患者。</p>
 <p>打开VS2013，选择ATL工程，一路next下去完成工程的创建。我们现在只是在尝试使用它，使用其默认的属性即可！</p>
-<h2 id="添加组件">添加组件</h2><p> 1、右击工程名 -&gt; 添加 -&gt; 类</p>
- <img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg">
-<p> 2、在这里我们选择一个简单对象来进行尝试</p>
- <img src="http://7x002i.com1.z0.glb.clouddn.com/activex3.jpg">
-<p> 3、选择相应的对象后，我们需要手动填写对象的名称以及其ProgID，然后点击完成。</p>
- <img src="http://7x002i.com1.z0.glb.clouddn.com/activex5.jpg">
-</li>
+<h2 id="添加组件">添加组件</h2></li>
 </ul>
-<h2 id="为对象创建方法与属性">为对象创建方法与属性</h2><pre><code>对象创建完成后，会在文件目录下多出与你定义的对象名相应的.cpp和.h文件，我们需要通过这两个文件为对象赋予方法与属性，其他文件现在对我们来说都是没用！
+<pre><code>1、右击工程名 -&gt; 添加 -&gt; 类
+<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg"></span>
+
+
+2、在这里我们选择一个简单对象来进行尝试
+<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex3.jpg"></span>
+
+
+3、选择相应的对象后，我们需要手动填写对象的名称以及其ProgID，然后点击完成。
+<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex5.jpg"></span>
+</code></pre><h2 id="为对象创建方法与属性">为对象创建方法与属性</h2><pre><code>对象创建完成后，会在文件目录下多出与你定义的对象名相应的.cpp和.h文件，我们需要通过这两个文件为对象赋予方法与属性，其他文件现在对我们来说都是没用！
+
 
 1、切换到类视图，右击IAlert(这个名称与你定义的对象名相关) -&gt; 添加 -&gt; 添加方法
 <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex6.jpg"></span>
 
+
 2、填写你的方法名，参数以及相应的类型，点击添加完成操作
 <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex7.jpg"></span>
+
 
 3、打开你定义的对象的.cpp文件，填写方法内容
 
@@ -287,7 +294,7 @@
 
 运行的结果：
 <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex15.jpg"></span>
-</code></pre><h1 id="相关参考">相关参考</h1>  <a href="http://cy198706.com/programming/2013/01/atl-activex-under-vs2012" target="_blank" rel="external"></a>
+</code></pre><h1 id="相关参考">相关参考</h1>  <a href="http://cy198706.com/programming/2013/01/atl-activex-under-vs2012" target="_blank" rel="external">一个人的絮叨</a>
 
         
       
