@@ -196,79 +196,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-
-      <!-- Table of Contents -->
-        
-
-
-        
         <h1 id="ActiveX简介">ActiveX简介</h1><p>  ActiveX是Microsoft对于一系列策略性面向对象技术和工具的称呼，其中主要的技术是组件对象模型（COM）。在有目录和其他支持的网络中，COM变成了分布式COM（DCOM）。在创建包括ActiveX程序时，主要的工作就是组件，一个可以自足的在ActiveX网络（主要包括Windows和Mac）中任意运行的程序。这个组件就是ActiveX控件。ActiveX是Microsoft为抗衡sun的Java而提出的，此控件的功能和java applet功能类似。</p>
 <p>  其实这些都是废话啦。对于工具，我们最主要关注的这东西怎么用，能做什么，怎么能把它用好！但是本人第一天接触这个东西，还不是很明白它到底能怎么玩。</p>
-<h1 id="ATL-ActiveX的简单用例">ATL-ActiveX的简单用例</h1><h2 id="环境以及平台">环境以及平台</h2><ul>
-<li>Windows 7</li>
-<li>Visual studio 2013</li>
-</ul>
-<h2 id="新建工程">新建工程</h2><p>  这个步骤是用来保持完整性的，请原谅强迫症患者。</p>
-<p>  打开VS2013，选择ATL工程，一路next下去完成工程的创建。我们现在只是在尝试使用它，使用其默认的属性即可！</p>
-<h2 id="添加组件">添加组件</h2><pre><code>1. 右击工程名 -&gt; 添加 -&gt; 类
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg"></span>
-
-2. 在这里我们选择一个简单对象来进行尝试
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex3.jpg"></span>
-
-3. 选择相应的对象后，我们需要手动填写对象的名称以及其ProgID，然后点击完成。
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex5.jpg"></span>
-</code></pre><h2 id="为对象创建方法与属性">为对象创建方法与属性</h2><pre><code>对象创建完成后，会在文件目录下多出与你定义的对象名相应的.cpp和.h文件，我们需要通过这两个文件为对象赋予方法与属性，其他文件现在对我们来说都是没用！
-
-1. 切换到类视图，右击IAlert(这个名称与你定义的对象名相关) -&gt; 添加 -&gt; 添加方法
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex6.jpg"></span>
-
-2. 填写你的方法名，参数以及相应的类型，点击添加完成操作
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex7.jpg"></span>
-
-3. 打开你定义的对象的.cpp文件，填写方法内容
-
-<span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STDMETHODIMP CAlert::GetString(BSTR* pVal)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// TODO:  在此添加实现代码</span></span><br><span class="line">USES_CONVERSION;</span><br><span class="line"><span class="keyword">char</span> szStr[<span class="number">20</span>] = <span class="string">"Hello World!"</span>;</span><br><span class="line">*pVal = ::SysAllocString(A2W(szStr));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> S_OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
-
-
-4. 打开相应的.h文件，标记控件为安全控件
-   为主类添加一个有关安全的继承类
-
-   <span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IObjectSafetyImpl&lt;CAlert,INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA&gt;</span><br></pre></td></tr></table></figure></span>
-
-
-   然后还需要在BEGINCOMMAP和ENDCOMMAP的代码段之间加入其对象映射
-
-   <span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COM_INTERFACE_ENTRY(IObjectSafety)</span><br></pre></td></tr></table></figure></span>
-</code></pre><h2 id="编译生成-dll文件">编译生成.dll文件</h2><pre><code>上述工作完成后，就可以生成相应的链接文件。
-
-右击工程名 -&gt; 生成
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex11.jpg"></span>
-
-完成后，便可以在工程目录下的Debug文件夹中找到相应的dll文件。可以考虑把它复制到一个新的文件夹当中，因为我们接下来需要写一个html文件，去使用这个dll文件。当然，你完成可以在当前目录下写html文件。
-</code></pre><h2 id="编写HTML测试控件">编写HTML测试控件</h2><pre><code><span class="comment"><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">title</span>&gt;</span></span><br><span class="line">			MyFirstTest</span><br><span class="line">		<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">object</span> <span class="attribute">id</span>=<span class="value">"obj"</span> <span class="attribute">align</span>=<span class="value">"center"</span> </span><br><span class="line">			<span class="attribute">codeBse</span>=<span class="value">"MyATLActiveX.dll"</span></span><br><span class="line">			<span class="attribute">CLASSID</span>=<span class="value">"CLSID:2D9E1BEF-8C29-42C0-9421-6843B95B9EF5"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="title">object</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">script</span> <span class="attribute">language</span>=<span class="value">"javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">			<span class="function"><span class="keyword">function</span> <span class="title">doTest</span><span class="params">()</span></span><br><span class="line">			</span>&#123;</span><br><span class="line">				<span class="keyword">var</span> alertString = obj.GetString();</span><br><span class="line">				alert(alertString);</span><br><span class="line">			&#125;</span><br><span class="line">		</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">			hello! It is first activex demo!</span><br><span class="line">		<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">value</span>=<span class="value">"TEST"</span> <span class="attribute">id</span>=<span class="value">"btnOK"</span> <span class="attribute">onclick</span>=<span class="value">"doTest();"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></span> 
-
-
-注：控件对象ID的查找
-    在工程文件中，找到一个.idl后缀的文件，打开它，在下面的位置找到其相应的ID
-    <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex13.jpg"></span>
-</code></pre><h2 id="查看测试效果">查看测试效果</h2><pre><code>编写完的HTML文件只能使用IE浏览器打开，因为这个Microsoft自家的东西只能用Microsoft自家的东西来弄。当然也是有办法让其适用于其他浏览器，这里暂不讨论。
-
-因为没有对其进行签名，所以需要我们手动允许其运行。
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex14.jpg"></span>
-
-
-运行的结果：
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex15.jpg"></span>
-</code></pre>
-
-        
-          <!-- show an end symbol if the article is fully displayed -->
-          <hr/>
-          <p class="article-more-link">
-            <a>end</a>
-          </p>
-        
+        <hr/>
+        <p class="article-more-link">
+          <a  href="/2015/07/29/ATL-ActiveX开发-1-初体验/#more">more >></a>
+        </p>
       
     </div>
     

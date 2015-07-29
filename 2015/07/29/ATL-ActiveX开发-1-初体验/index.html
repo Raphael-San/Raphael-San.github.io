@@ -219,7 +219,7 @@
         
           <div id="toc" class="toc-article">
             <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ActiveX简介"><span class="toc-number">1.</span> <span class="toc-text">ActiveX简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ATL-ActiveX的简单用例"><span class="toc-number">2.</span> <span class="toc-text">ATL-ActiveX的简单用例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境以及平台"><span class="toc-number">2.1.</span> <span class="toc-text">环境以及平台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建工程"><span class="toc-number">2.2.</span> <span class="toc-text">新建工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加组件"><span class="toc-number">2.3.</span> <span class="toc-text">添加组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为对象创建方法与属性"><span class="toc-number">2.4.</span> <span class="toc-text">为对象创建方法与属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译生成-dll文件"><span class="toc-number">2.5.</span> <span class="toc-text">编译生成.dll文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写HTML测试控件"><span class="toc-number">2.6.</span> <span class="toc-text">编写HTML测试控件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看测试效果"><span class="toc-number">2.7.</span> <span class="toc-text">查看测试效果</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ActiveX简介"><span class="toc-number">1.</span> <span class="toc-text">ActiveX简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ATL-ActiveX的简单用例"><span class="toc-number">2.</span> <span class="toc-text">ATL-ActiveX的简单用例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境以及平台"><span class="toc-number">2.1.</span> <span class="toc-text">环境以及平台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建工程"><span class="toc-number">2.2.</span> <span class="toc-text">新建工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加组件"><span class="toc-number">2.3.</span> <span class="toc-text">添加组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为对象创建方法与属性"><span class="toc-number">2.4.</span> <span class="toc-text">为对象创建方法与属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译生成-dll文件"><span class="toc-number">2.5.</span> <span class="toc-text">编译生成.dll文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写HTML测试控件"><span class="toc-number">2.6.</span> <span class="toc-text">编写HTML测试控件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看测试效果"><span class="toc-number">2.7.</span> <span class="toc-text">查看测试效果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关参考"><span class="toc-number">3.</span> <span class="toc-text">相关参考</span></a></li></ol>
           </div>
         
 
@@ -227,34 +227,34 @@
         
         <h1 id="ActiveX简介">ActiveX简介</h1><p>  ActiveX是Microsoft对于一系列策略性面向对象技术和工具的称呼，其中主要的技术是组件对象模型（COM）。在有目录和其他支持的网络中，COM变成了分布式COM（DCOM）。在创建包括ActiveX程序时，主要的工作就是组件，一个可以自足的在ActiveX网络（主要包括Windows和Mac）中任意运行的程序。这个组件就是ActiveX控件。ActiveX是Microsoft为抗衡sun的Java而提出的，此控件的功能和java applet功能类似。</p>
 <p>  其实这些都是废话啦。对于工具，我们最主要关注的这东西怎么用，能做什么，怎么能把它用好！但是本人第一天接触这个东西，还不是很明白它到底能怎么玩。</p>
+<a id="more"></a>
 <h1 id="ATL-ActiveX的简单用例">ATL-ActiveX的简单用例</h1><h2 id="环境以及平台">环境以及平台</h2><ul>
 <li>Windows 7</li>
-<li>Visual studio 2013</li>
+<li><p>Visual studio 2013</p>
+<h2 id="新建工程">新建工程</h2><p>这个步骤是用来保持完整性的，请原谅强迫症患者。</p>
+<p>打开VS2013，选择ATL工程，一路next下去完成工程的创建。我们现在只是在尝试使用它，使用其默认的属性即可！</p>
+<h2 id="添加组件">添加组件</h2><p> 1、右击工程名 -&gt; 添加 -&gt; 类</p>
+ <img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg">
+<p> 2、在这里我们选择一个简单对象来进行尝试</p>
+ <img src="http://7x002i.com1.z0.glb.clouddn.com/activex3.jpg">
+<p> 3、选择相应的对象后，我们需要手动填写对象的名称以及其ProgID，然后点击完成。</p>
+ <img src="http://7x002i.com1.z0.glb.clouddn.com/activex5.jpg">
+</li>
 </ul>
-<h2 id="新建工程">新建工程</h2><p>  这个步骤是用来保持完整性的，请原谅强迫症患者。</p>
-<p>  打开VS2013，选择ATL工程，一路next下去完成工程的创建。我们现在只是在尝试使用它，使用其默认的属性即可！</p>
-<h2 id="添加组件">添加组件</h2><pre><code>1. 右击工程名 -&gt; 添加 -&gt; 类
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex17.jpg"></span>
+<h2 id="为对象创建方法与属性">为对象创建方法与属性</h2><pre><code>对象创建完成后，会在文件目录下多出与你定义的对象名相应的.cpp和.h文件，我们需要通过这两个文件为对象赋予方法与属性，其他文件现在对我们来说都是没用！
 
-2. 在这里我们选择一个简单对象来进行尝试
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex3.jpg"></span>
-
-3. 选择相应的对象后，我们需要手动填写对象的名称以及其ProgID，然后点击完成。
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex5.jpg"></span>
-</code></pre><h2 id="为对象创建方法与属性">为对象创建方法与属性</h2><pre><code>对象创建完成后，会在文件目录下多出与你定义的对象名相应的.cpp和.h文件，我们需要通过这两个文件为对象赋予方法与属性，其他文件现在对我们来说都是没用！
-
-1. 切换到类视图，右击IAlert(这个名称与你定义的对象名相关) -&gt; 添加 -&gt; 添加方法
+1、切换到类视图，右击IAlert(这个名称与你定义的对象名相关) -&gt; 添加 -&gt; 添加方法
 <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex6.jpg"></span>
 
-2. 填写你的方法名，参数以及相应的类型，点击添加完成操作
+2、填写你的方法名，参数以及相应的类型，点击添加完成操作
 <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex7.jpg"></span>
 
-3. 打开你定义的对象的.cpp文件，填写方法内容
+3、打开你定义的对象的.cpp文件，填写方法内容
 
 <span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">STDMETHODIMP CAlert::GetString(BSTR* pVal)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// TODO:  在此添加实现代码</span></span><br><span class="line">USES_CONVERSION;</span><br><span class="line"><span class="keyword">char</span> szStr[<span class="number">20</span>] = <span class="string">"Hello World!"</span>;</span><br><span class="line">*pVal = ::SysAllocString(A2W(szStr));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> S_OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
 
 
-4. 打开相应的.h文件，标记控件为安全控件
+4、打开相应的.h文件，标记控件为安全控件
    为主类添加一个有关安全的继承类
 
    <span class="comment"><figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IObjectSafetyImpl&lt;CAlert,INTERFACESAFE_FOR_UNTRUSTED_CALLER|INTERFACESAFE_FOR_UNTRUSTED_DATA&gt;</span><br></pre></td></tr></table></figure></span>
@@ -283,7 +283,7 @@
 
 运行的结果：
 <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/activex15.jpg"></span>
-</code></pre>
+</code></pre><h1 id="相关参考">相关参考</h1>  <a href="http://cy198706.com/programming/2013/01/atl-activex-under-vs2012" target="_blank" rel="external"></a>
 
         
       
