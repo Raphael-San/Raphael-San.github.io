@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ATL-ActiveX/" style="font-size: 10px;">ATL-ActiveX</a><a href="/tags/WindowsProgram/" style="font-size: 10px;">WindowsProgram</a><a href="/tags/WindowsProgram-ATL-ActiveX/" style="font-size: 10px;">WindowsProgram - ATL-ActiveX</a><a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a><a href="/tags/指针/" style="font-size: 20px;">指针</a><a href="/tags/数组/" style="font-size: 10px;">数组</a>
+						<a href="/tags/ATL-ActiveX/" style="font-size: 15px;">ATL-ActiveX</a><a href="/tags/WindowsProgram/" style="font-size: 15px;">WindowsProgram</a><a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a><a href="/tags/指针/" style="font-size: 20px;">指针</a><a href="/tags/数组/" style="font-size: 10px;">数组</a>
 					</div>
 				</section>
 				
@@ -199,7 +199,7 @@
       <div class="article-info">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WindowsProgram-ATL-ActiveX/">WindowsProgram - ATL-ActiveX</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ATL-ActiveX/">ATL-ActiveX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WindowsProgram/">WindowsProgram</a></li></ul>
 	</div>
 
         
@@ -229,22 +229,17 @@
 <a id="more"></a>
 <h1 id="实现步骤">实现步骤</h1><h2 id="新建工程">新建工程</h2><pre><code>同样是按照默认方式新建一个ATL工程。
 </code></pre><h2 id="添加一个控件对象">添加一个控件对象</h2><pre><code>右击工程名 -&gt; 添加 -&gt; 添加类，在向导框中选择ATL控件。
-
 填写完控件名称后，这次就不能直接点击完成了，我们需要对这个控件进行一些设置。
 
 1、点击选项，在支持栏中勾选连接点，增加控件对连接点的支持。
-
     <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly1.jpg"></span>
 
 2、点击外观，在其他栏中勾选可插入。
-
     <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly2.jpg"></span>
 
 3、点击常用属性，在下拉列表中找到Fill Color，双击使其变成支持。因为我们需要对图形添加颜色，这样会容易看到效果
-
     <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly3.jpg"></span>
 </code></pre><h2 id="为控件添加属性">为控件添加属性</h2><pre><code>点击类视图 -&gt; 右击IPolyCtl(这名称与你定义的控件名相关) -&gt; 添加 -&gt; 添加属性
-
 在属性选择中，我们将该属性命名为Sizes，表示多边形的变数，选择其类型为SHORT。
 
 然后在PolyCtl.h文件中，添加一个变量储存Sizes值，并初始化。
@@ -256,7 +251,6 @@
 </code></pre><h2 id="控件绘图操作">控件绘图操作</h2><pre><code>  ### PolyCtl.h的相关操作
 
      1、在头文件上，增加math.h，增加对计算函数的支持。
-
      2、在PolyCtl类中的构造函数中进行初始化。
 
      <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CPolyCtl()</span><br><span class="line"> &#123;</span><br><span class="line">m_nSizes = <span class="number">3</span>;  <span class="comment">//最小边数为3</span></span><br><span class="line">m_clrFillColor = RGB(<span class="number">0</span>,<span class="number">0xFF</span>,<span class="number">0</span>);  <span class="comment">//图形然后为绿色</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
