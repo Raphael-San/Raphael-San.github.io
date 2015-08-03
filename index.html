@@ -196,80 +196,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-
-      <!-- Table of Contents -->
-        
-
-
-        
         <h1 id="Demo的简单说明">Demo的简单说明</h1><p>   这个Demo主要通过添加控件对象和页面属性对象实现一个多边形的变换。</p>
-<h1 id="实现步骤">实现步骤</h1><h2 id="新建工程">新建工程</h2><pre><code>同样是按照默认方式新建一个ATL工程。
-</code></pre><h2 id="添加一个控件对象">添加一个控件对象</h2><pre><code>右击工程名 -&gt; 添加 -&gt; 添加类，在向导框中选择ATL控件。
-
-填写完控件名称后，这次就不能直接点击完成了，我们需要对这个控件进行一些设置。
-
-1、点击选项，在支持栏中勾选连接点，增加控件对连接点的支持。
-
-    <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly1.jpg"></span>
-
-2、点击外观，在其他栏中勾选可插入。
-
-    <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly2.jpg"></span>
-
-3、点击常用属性，在下拉列表中找到Fill Color，双击使其变成支持。因为我们需要对图形添加颜色，这样会容易看到效果
-
-    <span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly3.jpg"></span>
-</code></pre><h2 id="为控件添加属性">为控件添加属性</h2><pre><code>点击类视图 -&gt; 右击IPolyCtl(这名称与你定义的控件名相关) -&gt; 添加 -&gt; 添加属性
-
-在属性选择中，我们将该属性命名为Sizes，表示多边形的变数，选择其类型为SHORT。
-
-然后在PolyCtl.h文件中，添加一个变量储存Sizes值，并初始化。
-<span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly16.JPG"></span>
-
-在PolyCtl.cpp中实现get_Sizes和put_Sizes方法
-
-<span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">STDMETHODIMP CPolyCtl::get_Sizes(SHORT* pval)</span><br><span class="line">&#123;</span><br><span class="line">	*pVal = m_nSizes;</span><br><span class="line">	<span class="keyword">return</span> S_OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">STDMETHODIMP CPolyCtl::put_Sizes(SHORT newVal)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>( <span class="number">2</span>&lt;newVal &amp;&amp; newVal &lt; <span class="number">100</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		m_nSizes = newVal;</span><br><span class="line">		FireViewChange();</span><br><span class="line">		<span class="keyword">return</span> S_OK;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">else</span></span><br><span class="line">		return <span class="title">Error</span><span class="params">(_T("Shape must have between 3 and 100 sides")</span>)</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></span>
-</code></pre><h2 id="控件绘图操作">控件绘图操作</h2><pre><code>  ### PolyCtl.h的相关操作
-
-     1、在头文件上，增加math.h，增加对计算函数的支持。
-
-     2、在PolyCtl类中的构造函数中进行初始化。
-
-     <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CPolyCtl()</span><br><span class="line"> &#123;</span><br><span class="line">m_nSizes = <span class="number">3</span>;  <span class="comment">//最小边数为3</span></span><br><span class="line">m_clrFillColor = RGB(<span class="number">0</span>,<span class="number">0xFF</span>,<span class="number">0</span>);  <span class="comment">//图形然后为绿色</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
-
-     3、定义一个POINT数组用于计算，以及声明一个计算方法
-
-     <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POINT m_arrPoint[<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CalcPoints</span><span class="params">(<span class="keyword">const</span> RECT&amp; rc)</span></span>;</span><br></pre></td></tr></table></figure></span>
-
-     4、重写OnDraw函数（可以把原来的东西都删了）
-
-     <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">HRESULT CPolyCtl::OnDraw(ATL_DRAWINFO&amp; di)</span><br><span class="line">&#123;</span><br><span class="line">RECT&amp; rc = *(RECT*)di.prcBounds;</span><br><span class="line">HDC hdc = di.hdcDraw;</span><br><span class="line"></span><br><span class="line">COLORREF colFore;</span><br><span class="line">HBRUSH hOldBrush,hBrush;</span><br><span class="line">HPEN hOldPen,hPen;</span><br><span class="line"></span><br><span class="line">OleTranslateColor(m_clrFillColor,NULL,&amp;colFore);</span><br><span class="line"></span><br><span class="line">hPen = (HPEN)GetStockObject(BLACK_PEN);</span><br><span class="line">hOldPen = (HPEN)SelectObject(hdc,hPen);</span><br><span class="line">hBrush = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">hOldBrush = (HBRUSH)SelectObject(hdc,hBrush);</span><br><span class="line"></span><br><span class="line">Ellipse(hdc,rc.left,rc.top,rc.right,rc.bottom);</span><br><span class="line"></span><br><span class="line">hBrush = CreateSolidBrush(colFore);</span><br><span class="line">SelectObject(hdc,hBrush);</span><br><span class="line"></span><br><span class="line">CalcPoints(rc);</span><br><span class="line">Polygon(hdc,&amp;m_arrPoint[<span class="number">0</span>],m_nSides);</span><br><span class="line"></span><br><span class="line">SelectObject(hdc,hOldPen);</span><br><span class="line">SelectObject(hdc,hOldBrush);</span><br><span class="line">DelectObject(hBrush);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> S_OK;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></span>
-
-### PolyCtl.cpp的相关操作
-
-    实现CalcPoints方法：
-    <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> CPolyCtl::CalcPoints(<span class="keyword">const</span> RECT&amp; rc)</span><br><span class="line">	 &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="number">3.14159265358979</span>;</span><br><span class="line">	POINT ptCenter;</span><br><span class="line">	<span class="keyword">double</span> dblRadiusx = (rc.right - rc.left)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">double</span> dblRadiusy = (rc.bottom - rc.top)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">double</span> dblAngle = <span class="number">3</span>*pi/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">double</span> dblDiff = <span class="number">2</span>*pi/m_nsizes;</span><br><span class="line">	ptCenter.x = (rc.left + rc.right)/<span class="number">2</span>;</span><br><span class="line">	ptCenter.y = (rc.top + rc.bottom)/<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m_nSizes;i++)</span><br><span class="line"> 	&#123;</span><br><span class="line">		m_arrPoint[i].x = (<span class="keyword">long</span>)(dblRadiusx * <span class="built_in">cos</span>(dblAngle) + ptCenter.x + <span class="number">0.5</span>);</span><br><span class="line">		m_arrPoint[i].y = (<span class="keyword">long</span>)(dblRadiusy * <span class="built_in">sin</span>(dblAngle) + ptCenter.y + <span class="number">0.5</span>);</span><br><span class="line">		dblAngle += dblDiff;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
-</code></pre><h2 id="最后交互操作">最后交互操作</h2><pre><code>1、在类视图中，为PolyCtl类增加一个新的方法，命名为modifySizes，并在PolyCtl.cpp中对其实现。
-
-   <span class="comment"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put_Sizes(size);</span><br></pre></td></tr></table></figure></span>
-
-2、在PolyCtl.htm里面添加交互的javascript代码
-
-   <span class="comment"><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span> = "<span class="attribute">text</span>/<span class="attribute">javascript</span>" &gt;</span><span class="javascript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">modifySizes</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> size = <span class="built_in">document</span>.getElementById(<span class="string">"txt1"</span>).value;</span><br><span class="line">	PolyCtl.modifySizes(size);</span><br><span class="line">&#125;</span><br><span class="line">     </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure></span>
-
-   在body中，添加一个文本框和一个button作为响应
-   <span class="comment"><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"txt1"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">value</span>=<span class="value">"modify"</span> <span class="attribute">onclick</span>=<span class="value">"modifySizes();"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></span>
-</code></pre><h2 id="结果">结果</h2><pre><code><span class="comment"><img src="http://7x002i.com1.z0.glb.clouddn.com/poly15.JPG"></span>
-</code></pre><h1 id="相关说明">相关说明</h1><p>  相关结果演示：<a href="https://github.com/Yu4rmyfs/Codes/tree/master/ActiveX/demo2" target="_blank" rel="external">demo2</a><br>  主要参考文档：<a href="https://msdn.microsoft.com/en-us/library/shhz2ddh(v=vs.120).aspx" target="_blank" rel="external">ATL教程</a></p>
-
-
-        
-          <!-- show an end symbol if the article is fully displayed -->
-          <hr/>
-          <p class="article-more-link">
-            <a>end</a>
-          </p>
-        
+        <hr/>
+        <p class="article-more-link">
+          <a  href="/2015/08/03/ATL-ActiveX开发二之控件/#more">more >></a>
+        </p>
       
     </div>
     
